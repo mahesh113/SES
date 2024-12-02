@@ -38,7 +38,7 @@ namespace SimpleExchangeService.Application
             PropertyInfo[] propInfos = typeof(Rates).GetProperties();
             foreach (var x in propInfos )
             {
-                if ( x.Name == outputCurrency)
+                if ( x.Name.ToUpper() == outputCurrency.ToUpper())
                 {
                     return x.GetValue(rates);
                 }
