@@ -7,7 +7,12 @@ builder.Configuration.AddJsonFile("appsettings.json",
         reloadOnChange: true);
 
 // Add services to the container
-builder.Services.AddScoped<IConversionService, ConversionService>();
+//builder.Services.AddScoped<IConversionService, ConversionService>();
+builder.Services.AddHttpClient<IConversionService, ConversionService>(client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
+
 builder.Services.AddControllersWithViews();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

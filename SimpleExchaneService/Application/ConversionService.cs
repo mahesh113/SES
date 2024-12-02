@@ -6,12 +6,13 @@ namespace SimpleExchangeService.Application
 {
     public class ConversionService : IConversionService
     {
+        private readonly HttpClient _httpClient;
 
-        private readonly IConfiguration _configuration;
-        public ConversionService(IConfiguration configuration)
+        public ConversionService(HttpClient httpClient)
         {
-            _configuration = configuration;
+            _httpClient = httpClient;
         }
+
         public Task<ExchangeResponse> Convert(ExchangeRequest message)
         {
             return Task.FromResult(new ExchangeResponse
