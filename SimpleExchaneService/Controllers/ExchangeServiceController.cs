@@ -18,6 +18,16 @@ namespace SimpleExchangeService.Controllers
         [HttpPost]
         public async Task<ActionResult<ExchangeResponse>> Post(ExchangeRequest request)
         {
+            if (string.IsNullOrEmpty(request.InputCurrency) ||
+                string.IsNullOrEmpty(request.OutputCurrency))
+            {
+                return BadRequest("Provide input/output currently details");
+            }
+            else if (request.Amount <= 0) 
+            { 
+                return BadRequest("Provide valid amount for conversion");
+            }
+
             var response = await _conversionService.Convert(request);
             return Ok(response);
         }
