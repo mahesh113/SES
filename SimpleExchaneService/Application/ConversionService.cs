@@ -6,6 +6,9 @@ using System.Reflection;
 
 namespace SimpleExchangeService.Application
 {
+    /// <summary>
+    /// Conversion service which will be called from API layer.
+    /// </summary>
     public class ConversionService : IConversionService
     {
         private readonly HttpClient _httpClient;
@@ -15,6 +18,11 @@ namespace SimpleExchangeService.Application
             _httpClient = httpClient;
         }
 
+        /// <summary>
+        /// Conversion method which does the external api call and convert the amount to output currently
+        /// </summary>
+        /// <param name="message">type of ExchangeRequest which as necessary information for currency value conversion</param>
+        /// <returns></returns>
         public async Task<ExchangeResponse> Convert(ExchangeRequest message)
         {
             var response = await _httpClient.GetAsync(message.InputCurrency);
@@ -33,6 +41,12 @@ namespace SimpleExchangeService.Application
             };
         }
 
+        /// <summary>
+        /// private method to find the string format property value from an object
+        /// </summary>
+        /// <param name="rates"> rates object</param>
+        /// <param name="outputCurrency"> currency in string</param>
+        /// <returns>return decimal value of outputCurrency</returns>
         private static object GetRateValue(Rates rates, string outputCurrency)
         {
             PropertyInfo[] propInfos = typeof(Rates).GetProperties();
