@@ -1,1 +1,3 @@
-# SES
+# Simple Exchagne Service
+
+Under development
