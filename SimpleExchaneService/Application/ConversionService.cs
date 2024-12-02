@@ -13,15 +13,18 @@ namespace SimpleExchangeService.Application
             _httpClient = httpClient;
         }
 
-        public Task<ExchangeResponse> Convert(ExchangeRequest message)
+        public async Task<ExchangeResponse> Convert(ExchangeRequest message)
         {
-            return Task.FromResult(new ExchangeResponse
+            var response = await _httpClient.GetAsync(message.InputCurrency);
+            response.EnsureSuccessStatusCode();
+
+            return new ExchangeResponse
             {
                 Amount = message.Amount,
                 InputCurrency = message.InputCurrency,
                 OutputCurrency = message.OutputCurrency,
                 Value = 2.2m
-            });
+            };
         }
     }
 }
