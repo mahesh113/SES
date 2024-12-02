@@ -1,0 +1,6 @@
+@SimpleExchaneService_HostAddress = http://localhost:5003
+
+GET {{SimpleExchaneService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
