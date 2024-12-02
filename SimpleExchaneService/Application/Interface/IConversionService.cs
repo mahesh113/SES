@@ -1,7 +1,10 @@
-﻿namespace SimpleExchangeService.Application.Interface
+﻿using SimpleExchangeService.Messages.Requests;
+using SimpleExchangeService.Messages.Response;
+
+namespace SimpleExchangeService.Application.Interface
 {
     public interface IConversionService
     {
-        decimal Convert(decimal value);
+        Task<ExchangeResponse> Convert(ExchangeRequest message);
     }
 }
