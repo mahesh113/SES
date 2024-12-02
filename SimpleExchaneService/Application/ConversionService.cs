@@ -6,6 +6,12 @@ namespace SimpleExchangeService.Application
 {
     public class ConversionService : IConversionService
     {
+
+        private readonly IConfiguration _configuration;
+        public ConversionService(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
         public Task<ExchangeResponse> Convert(ExchangeRequest message)
         {
             return Task.FromResult(new ExchangeResponse

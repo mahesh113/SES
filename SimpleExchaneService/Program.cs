@@ -2,6 +2,9 @@ using SimpleExchangeService.Application;
 using SimpleExchangeService.Application.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddJsonFile("appsettings.json",
+        optional: true,
+        reloadOnChange: true);
 
 // Add services to the container
 builder.Services.AddScoped<IConversionService, ConversionService>();
